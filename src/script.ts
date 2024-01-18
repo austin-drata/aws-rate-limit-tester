@@ -1,14 +1,14 @@
-import { DescribeDBClusterSnapshotsCommand, RDSClient } from '@aws-sdk/client-rds';
+import { DescribeLoadBalancersCommand, ElasticLoadBalancingV2Client } from '@aws-sdk/client-elastic-load-balancing-v2';
 
-const problematicClients = ['ElasticLoadBalancingV2Client', 'APIGatewayClient', 'RDSClient'];
+const problematicClients = ['ElasticLoadBalancingV2Client => 100ms', 'APIGatewayClient => 200ms', 'RDSClient => 250ms'];
 
 let requestCount = 0;
 const startTime = Date.now();
 
 const script = async () => {
-  const command = new DescribeDBClusterSnapshotsCommand({});
+  const command = new DescribeLoadBalancersCommand({});
 
-  const client = new RDSClient({
+  const client = new ElasticLoadBalancingV2Client({
     region: 'us-west-2',
     maxAttempts: 1,
   });
@@ -24,7 +24,7 @@ const script = async () => {
       console.log({ httpStatusCode });
     }
   } catch (error) {
-    if ((error as any).Code === 'Throttling') {
+    if ((error as any).Code === 'Throttling' || (error as any).message === 'Too Many Requests') {
       const endTime = Date.now();
       const secondsUntilFirstRateLimitError = (endTime - startTime - 1000) / 1000;
       console.log({
@@ -48,7 +48,7 @@ const intervalId = setInterval(
       console.log('root error');
       console.log(err);
     }),
-  250
+  75
 );
 
 const timeoutId = setTimeout(() => {
