@@ -1,0 +1,50 @@
+{
+    "prettier.tabWidth": 4,
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": true,
+    "[typescript]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "prettier.trailingComma": "all",
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    "cSpell.words": [
+        "Asana",
+        "cachesize",
+        "CHANGEME",
+        "ciphertext",
+        "copyfiles",
+        "datasource",
+        "dbclusters",
+        "dbinstances",
+        "ddtags",
+        "dnscache",
+        "drata",
+        "elasticacheclusters",
+        "elasticachereplicationgroups",
+        "elasticsearchdomains",
+        "gserviceaccount",
+        "knowbe",
+        "KSUID",
+        "localdev",
+        "localstack",
+        "mtls",
+        "nofail",
+        "opentelemetry",
+        "Retryable",
+        "signin",
+        "Subdependency",
+        "temporalio",
+        "tmprl",
+        "typedorm"
+    ]
+}
